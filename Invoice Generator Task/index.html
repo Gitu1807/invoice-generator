@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Left Panel (Form) -->
+    <div class="left-panel">
+
+    <h2>Invoice Generator</h2>
+    <label>Upload Company Logo</label><br><br>
+    <input type="file" id="logoInput" accept="image/*"><br><br>
+
+    <div class="row">
+      <div class="col">
+        <label>Invoice Date</label>
+        <input type="date" id="invoiceDate" placeholder="Invoice Date" onchange="updatePreview()" required>
+      </div>
+      <div class="col">
+        <label>Due Date</label>
+        <input type="date" id="dueDate" placeholder="Due Date" onchange="updatePreview()" required>
+      </div>
+    </div>
+
+    <br>
+      
+    <div class="row1">
+      <label>Invoice Number</label>
+      <input type="text" id="invoiceNumber" placeholder="Enter Invoice Number" maxlength="15" oninput="updatePreview()" required>
+    </div>
+
+    <div class="row">
+  <div class="col tax-field">
+    <input type="text" class="code-input" id="companyStateCode" value="">
+    <input type="text" id="companyTax" placeholder="Company Tax Number" maxlength="15" oninput="updatePreview()" required>
+  </div>
+
+  <div class="col tax-field">
+    <input type="text" class="code-input" id="customerStateCode" value="">
+    <input type="text" id="customerTax" placeholder="Customer Tax Number" maxlength="15" oninput="updatePreview()" required>
+  </div>
+</div>
+
+
+    <div class="row">
+      <div class="col">
+        <input type="text" id="companyName" placeholder="Your Company Name (Bill From)" maxlength="50" oninput="updatePreview()" required>
+      </div>
+      <div class="col">
+        <input type="text" id="customerName" placeholder="Customer Name (Bill To)" maxlength="50" oninput="updatePreview()" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <input type="text" id="companyAddress" placeholder="Company Address (Bill From)" oninput="updatePreview()" required>
+      </div>
+      <div class="col">
+        <input type="text" id="customerAddress" placeholder="Customer Address (Bill To)" oninput="updatePreview()" required>
+      </div>
+    </div>
+
+    <div class="row">
+  <div class="col phone-field">
+    <input type="text" class="code-input" id="companyPhoneCode" value="">
+    <input type="text" id="companyPhone" maxlength="10" placeholder="Company Phone (Bill From)" oninput="updatePreview()" required>
+  </div>
+  <div class="col phone-field">
+    <input type="text" class="code-input" id="customerPhoneCode" value="">
+    <input type="text" id="customerPhone" maxlength="10" placeholder="Customer Phone (Bill To)" oninput="updatePreview()" required>
+  </div>
+  </div>
+
+
+    <div class="row">
+      <div class="col">
+        <input type="text" id="companyEmail" placeholder="Company Email (Bill From)" oninput="updatePreview()" required>
+      </div>
+      <div class="col">
+        <input type="text" id="customerEmail" placeholder="Customer Email (Bill To)" oninput="updatePreview()"required>
+      </div>
+    </div>
+     
+    <br><br>
+
+      <table>
+        <tr>
+          <th>Product Name & Description</th>
+          <th>HSN/SAC Code</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="prodName" placeholder="Product Name" required></td>
+          <td><input type="text" id="hsn" placeholder="Code" maxlength="6" required></td>
+          <td><input type="number" id="price" placeholder="Price" required></td>
+          <td><input type="number" id="qty" placeholder="Quantity" required></td>
+        </tr>
+      </table>
+      
+      <br>
+       
+      <button class="add-btn" onclick="addItem()">Add Item</button>
+
+      <div class="summary">
+      <div class="summary-row">
+        <label>Tax (%)</label>
+        <input type="number" id="tax" placeholder="Tax (%)" value="" oninput="updatePreview()">
+      </div>
+      <div class="summary-row">
+        <label>Discount</label>
+        <input type="number" id="discount" placeholder="Discount (%)" value="" oninput="updatePreview()">
+      </div>
+      <div class="summary-row">
+        <label>Total</label>
+        <input type="text" id="total" value="">
+      </div>
+    </div>
+
+      <label>Bank Details</label>
+      <textarea id="bankDetails" oninput="updatePreview()" rows="3" required></textarea>
+
+       <br><br>
+
+      <label>Notes</label>
+      <textarea id="noteDetails" oninput="updatePreview()" rows="3"></textarea>
+    </div>
+
+    <!-- Right Panel (Preview) -->
+    <div class="right-panel">
+      <h3>Invoice Preview</h3>
+      <img id="logoPreview" width="100" alt="Logo Preview"><br><br>
+
+      <div class="header">
+      <div class="left">
+         <strong>Invoice Number : </strong> <span id="prevInvoiceNum"></span>
+      </div>
+         <div class="right-dates">
+         <div class="date-row">
+         <span class="label-text"><b>Invoice Date</b></span><span> : </span><span id="prevInvoiceDate">DD/MM/YYYY</span>
+         </div>
+         <div class="date-row">
+         <span class="label-text"><b>Due Date</b></span><span> : </span><span id="prevDueDate">DD/MM/YYYY</span>
+         </div>
+         </div>
+
+      </div>
+
+         <div class="row">
+      <div class="col">
+         <p><strong>Bill From : </strong>
+      </div>
+      <div class="col">
+          <p><strong>Bill To : </strong>
+      </div>
+    </div>
+      
+       <div class="row">
+      <div class="col">
+        <b>Company Name : </b><span id="prevCompanyName"></span><br>
+      </div>
+      <div class="col">
+         <b>Customer Name :</b> <span id="prevCustomerName"></span><br>
+      </div>
+    </div>
+    
+     <br>
+
+    <div class="row">
+      <div class="col">
+        <b>Company Address :</b> <span id="prevCompanyAddress"></span><br>
+      </div>
+      <div class="col">
+       <b> Customer Address :</b> <span id="prevCustomerAddress"></span><br>
+      </div>
+    </div>
+
+     <br>
+
+    <div class="row">
+      <div class="col">
+       <b> Company Phone No :</b> <span id="prevCompanyPhone"></span><br>
+      </div>
+      <div class="col">
+      <b>Customer Phone No :</b> <span id="prevCustomerPhone"></span><br>
+      </div>
+    </div>
+
+     <br>
+
+     <div class="row">
+      <div class="col">
+       <b> Company Email :</b> <span id="prevCompanyEmail"></span><br>
+      </div>
+      <div class="col">
+       <b>Customer Email :</b> <span id="prevCustomerEmail"></span><br>
+      </div>
+    </div>
+
+     <br>
+
+      <div class="row">
+      <div class="col">
+        <b>Company Tax No :</b><span id="prevCompanyTax"></span>
+      </div>
+      <div class="col">
+        <b>Customer Tax No :</b><span id="prevCustomerTax"></span>
+      </div>
+    </div>
+      
+      <br><br>
+
+      <table id="itemTable">
+        <tr>
+          <th>Product Name & Description</th>
+          <th>HSN Code</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </table>
+
+      <br>
+
+      <div class="prevSummary">
+      <div class="summary-row-align">
+      <span class="label-text"><b>Tax</b></span><span> :&nbsp;</span><span id="prevTax">0.00</span>
+      </div>
+      <div class="summary-row-align">
+      <span class="label-text"><b>Discount</b></span><span> :&nbsp;</span><span id="prevDiscount">0.00</span>
+      </div>
+      <div class="summary-row-align">
+      <span class="label-text"><b>Subtotal</b></span><span> :&nbsp;</span><span id="prevSubtotal">0.00</span>
+      </div>
+      </div>
+      
+         <div>
+         <span class="label-text"><b>Bank Details </b></span><span>  &nbsp;<b>:</b></span><span id="prevBank"></span>
+         </div>
+         <br>
+         <div class="date-row">
+         <span class="label-text"><b>Notes </b></span><span><b>:</b></span><span id="prevNotes"></span>
+         </div>
+
+      <button class="print-btn" onclick="printInvoice()">Print Invoice</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #3498db;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  padding: 20px;
+
+}
+
+.left-panel, .right-panel {
+  width: 50%;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+  width: 100%;
+  margin-top: 20px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+   border-collapse: collapse;
+}
+
+th {
+  background-color: #041570;
+  color: white;
+  padding: 5px;
+  text-align: left;
+}
+
+td {
+  padding: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.col {
+  flex: 1;
+}
+
+.row1{
+    width: 48.5%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prevSummary {
+  margin-top: 20px;
+  width: 200px;
+  margin-left: auto;
+}
+
+.summary-row-align {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.summary-row-align span {
+  margin-right: 4px;
+}
+
+.label-text {
+  min-width: 70px; 
+  display: inline-block;
+}
+
+
+.summary {
+  max-width: 300px;
+  margin-left: auto;
+}
+
+.summary-row {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: baseline;
+}
+
+.summary-row label {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.summary-row input {
+  flex: 1;
+  padding: 5px;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.print-btn {
+  background-color: #2584e9;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+  }
+}
+
+ .right-dates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+
+.date-row {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.date-row span {
+  margin-right: 4px;
+}
+
+.date-row .label-text {
+  min-width: 100px; 
+  display: inline-block;
+} 
+
+.phone-field {
+  display: flex;
+}
+
+.phone-field .code-input {
+  width: 60px;
+  padding: 5px;
+  /* border: 1px solid #ccc; */
+  border-right: none;
+  background-color: #f0f0f0;
+  text-align: center;
+  border-radius: 4px 0 0 4px;
+}
+
+.phone-field input[type="text"]:not(.code-input) {
+  flex: 1;
+  padding: 5px;
+  /* border: 1px solid #ccc; */
+  border-radius: 0 4px 4px 0;
+}
+
+.tax-field {
+  display: flex;
+}
+
+.tax-field .code-input {
+  width: 60px;
+  padding: 5px;
+  /* border: 1px solid #ccc; */
+  border-right: none;
+  background-color: #f0f0f0;
+  text-align: center;
+  border-radius: 4px 0 0 4px;
+}
+
+.tax-field input[type="text"]:not(.code-input) {
+  flex: 1;
+  padding: 5px;
+  /* border: 1px solid #ccc; */
+  border-radius: 0 4px 4px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
