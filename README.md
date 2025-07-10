@@ -1,2 +1,2 @@
-# invoice-generator
+# Invoice-Generator
 Generates the bills
